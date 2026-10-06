@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>億威電子系統 EMMT Systems | 軍規 MIL-Q-9858A · OEM/ODM 電子代工 · TAF可靠度實驗室 (17025)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            bg: '#fbfbfd',
+                            surface: '#f5f5f7',
+                            border: '#d2d2d7',
+                            subtle: '#e5e5ea',
+                            text: '#1d1d1f',
+                            secondary: '#6e6e73',
+                            tertiary: '#86868b',
+                            blue: '#0071e3',
+                            'blue-hover': '#0077ed',
+                            dark: '#111113',
+                            card: '#ffffff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: [
+                            '-apple-system',
+                            'BlinkMacSystemFont',
+                            '"SF Pro Text"',
+                            '"SF Pro Display"',
+                            '"Inter"',
+                            '"Noto Sans TC"',
+                            '"Segoe UI"',
+                            'system-ui',
+                            'sans-serif'
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+        body {
+            background-color: #fbfbfd;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .apple-blur {
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .apple-card {
+            background-color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .apple-pill-btn {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .apple-pill-btn:hover {
+            transform: scale(1.02);
+        }
+        .apple-pill-btn:active {
+            transform: scale(0.98);
+        }
+
+        .badge-pulse {
+            position: relative;
+        }
+        .badge-pulse::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 9999px;
+            background: inherit;
+            animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+            z-index: -1;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="selection:bg-neutral-900 selection:text-white">
+
+    <!-- Sticky Glassmorphic Header -->
+    <header class="sticky top-0 z-50 apple-blur bg-white/85 border-b border-black/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14">
+                <!-- Brand Logo: EMMT 億威電子 -->
+                <a href="#" class="flex items-center space-x-2.5 text-neutral-950 group">
+                    <div class="w-8 h-8 rounded-lg bg-neutral-950 flex items-center justify-center text-white shadow-sm transition-transform group-hover:scale-105">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <rect x="9" y="9" width="6" height="6"/>
+                            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col text-left">
+                        <div class="flex items-baseline space-x-1.5">
+                            <span class="text-base font-bold tracking-tight text-neutral-950">億威電子</span>
+                            <span class="text-[10px] font-bold tracking-wider uppercase text-apple-blue font-mono">EMMT</span>
+                        </div>
+                        <span class="text-[9px] text-apple-tertiary tracking-tight hidden sm:inline">義联集團 · 燁輝企業關係企業</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links from emmt.com.tw -->
+                <nav class="hidden lg:flex items-center space-x-6 text-xs font-normal text-apple-secondary">
+                    <a href="#about" class="hover:text-neutral-950 transition-colors">關於億威</a>
+                    <a href="#services" class="hover:text-neutral-950 transition-colors">產品與服務</a>
+                    <a href="#tech" class="hover:text-neutral-950 transition-colors">技術能力與專長</a>
+                    <a href="#taf-lab" class="hover:text-neutral-950 transition-colors">TAF可靠度實驗室</a>
+                    <a href="#certifications" class="hover:text-neutral-950 transition-colors">管理系統驗證</a>
+                    <a href="#contact" class="hover:text-neutral-950 transition-colors">聯絡我們</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="tel:0425322163" class="text-xs text-apple-secondary hover:text-neutral-950 font-mono flex items-center space-x-1">
+                        <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span>(04) 2532-2163</span>
+                    </a>
+                    <a href="#contact" class="apple-pill-btn inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-neutral-950 text-white text-xs font-medium hover:bg-neutral-800 shadow-sm transition">
+                        <span>線上需求諮詢</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="開啟選單" class="lg:hidden p-1.5 rounded-md text-apple-secondary hover:text-neutral-950 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white/95 border-b border-neutral-200 px-5 pt-3 pb-5 space-y-2 text-sm text-neutral-700 shadow-lg">
+            <a href="#about" class="block py-1.5 hover:text-neutral-950">關於億威 (公司簡介與歷史概述)</a>
+            <a href="#services" class="block py-1.5 hover:text-neutral-950">五大產品與服務</a>
+            <a href="#tech" class="block py-1.5 hover:text-neutral-950">技術能力與製造專長</a>
+            <a href="#taf-lab" class="block py-1.5 hover:text-neutral-950">TAF 可靠度實驗室 (ISO/IEC 17025)</a>
+            <a href="#certifications" class="block py-1.5 hover:text-neutral-950">9 大國際管理系統驗證</a>
+            <a href="#contact" class="block py-1.5 font-medium text-apple-blue">聯絡我們與台中/高雄廠區</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-white via-apple-bg to-apple-bg overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Category Tag (Direct Quote from emmt.com.tw) -->
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-apple-surface border border-neutral-200 text-[11px] sm:text-[12px] font-medium text-apple-secondary mb-6 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 badge-pulse"></span>
+                <span>符合美國軍規 MIL-Q-9858A 品保標準之專業 ODM 與 OEM 製造廠</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-neutral-950 leading-[1.12] max-w-4xl mx-auto">
+                前身美商 TITAN SESCO。<br>
+                <span class="text-apple-secondary font-normal">全方位電子專業代工與客製化解決方案。</span>
+            </h1>
+
+            <p class="text-xs sm:text-sm text-apple-secondary max-w-2xl mx-auto mt-5 leading-relaxed font-normal">
+                億威電子系統（EMMT）提供設計與製造的全方位服務，專注於 ODM 與 OEM 解決方案。除提供全面性的客製化解決方案，並可提供少量多樣的製造、整合與測試功能服務。
+            </p>
+
+            <!-- Pill CTA Controls -->
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="#contact" class="apple-pill-btn w-full sm:w-auto px-6 py-2.5 rounded-full bg-apple-blue hover:bg-apple-blue-hover text-white text-xs font-medium shadow-sm transition flex items-center justify-center space-x-1.5">
+                    <span>專案需求諮詢</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="#taf-lab" class="apple-pill-btn w-full sm:w-auto px-6 py-2.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 text-xs font-medium transition flex items-center justify-center space-x-1.5">
+                    <span>檢視 TAF 可靠度實驗室規格</span>
+                    <svg class="w-3.5 h-3.5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Authentic Indicators from emmt.com.tw Homepage -->
+            <div class="mt-12 pt-8 border-t border-neutral-200 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-3">
+                    <div class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 font-mono">35<span class="text-xl font-normal text-apple-blue">+</span></div>
+                    <div class="text-xs text-apple-secondary mt-1 font-medium">三十五年以上電子科技領域創新</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 font-mono">100<span class="text-xl font-normal text-apple-blue">+</span></div>
+                    <div class="text-xs text-apple-secondary mt-1 font-medium">超過100家客戶的堅定信任</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 font-mono">100<span class="text-xl font-normal text-apple-blue">+</span></div>
+                    <div class="text-xs text-apple-secondary mt-1 font-medium">自主及協助開發產品超過100種</div>
+                </div>
+                <div class="p-3">
+                    <div class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 font-mono">8<span class="text-xl font-normal text-apple-blue">+</span></div>
+                    <div class="text-xs text-apple-secondary mt-1 font-medium">榮獲超過8項國際重要認證</div>
+                </div>
+            </div>
+
+            <!-- Visual Plant Card -->
+            <div class="mt-10 relative mx-auto rounded-2xl overflow-hidden shadow-xl border border-neutral-200 bg-neutral-900 group">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=85" 
+                     alt="億威電子 SMT 自動化生產線" 
+                     class="w-full h-72 sm:h-80 md:h-[380px] object-cover object-center opacity-85 transition-transform duration-700 group-hover:scale-102"
+                     onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1d1d1f/ffffff?text=EMMT+Manufacturing';" />
+                <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent"></div>
+                <div class="absolute bottom-5 left-5 right-5 flex flex-col sm:flex-row sm:items-center justify-between text-left text-white">
+                    <div>
+                        <span class="px-2 py-0.5 rounded bg-white/20 backdrop-blur-md text-[10px] font-medium tracking-wide uppercase">
+                            臺中市潭子科技產業園區總公司
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-bold tracking-tight mt-1">符合軍規 MIL-Q-9858A 品質系統之專業製造廠</h3>
+                        <p class="text-[11px] sm:text-xs text-neutral-300 max-w-xl mt-0.5">
+                            主要服務項目為無線電通訊（RADIO）、無線射頻辨識（RFID）、表面黏著技術（SMT）、印刷電路板組裝（PCBA）、軍規等級的 Cable 與工業規格之模組。
+                        </p>
+                    </div>
+                    <div class="mt-3 sm:mt-0 text-right">
+                        <div class="text-[11px] text-neutral-300 font-mono">億威電子系統股份有限公司</div>
+                        <div class="text-[10px] text-neutral-400">EMMT SYSTEMS CORPORATION</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section: Exact Text from emmt.com.tw/emmt-web/about -->
+    <section id="about" class="py-16 bg-white border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left 7 Cols: Official History & Overview -->
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">About EMMT</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950">
+                        關於億威 · 歷史概述與核心價值
+                    </h2>
+                    
+                    <div class="space-y-3 text-xs sm:text-sm text-apple-secondary leading-relaxed">
+                        <p>
+                            本公司曾經是美國 <strong>TITAN SESCO 公司（美國加州）之海外分公司</strong>。於 1988 年 10 月美商撤資後公司改組。
+                        </p>
+                        <p>
+                            我們提供設計與製造的全方位服務並專注於 <strong>ODM 與 OEM 解決方案</strong>，除提供全面性的客製化解決方案，並可提供少量多樣的製造、整合、測試功能服務。
+                        </p>
+                        <p>
+                            多年以來億威電子為集團內各公司解決各種痛點並開發出各種應用不計其數，為因應日與俱增的需求，億威電子成立<strong>“系統整合部門”</strong>、<strong>“視覺特效部門”</strong>，投入系統開發與整合市場，除集團內各公司專案外，也將透過集團各公司之能見度，拓展至海外市場。
+                        </p>
+                    </div>
+
+                    <!-- Core Value Quote from emmt.com.tw -->
+                    <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200 text-xs">
+                        <div class="font-bold text-neutral-950 mb-1 flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-apple-blue mr-2"></span>
+                            核心價值：團隊精神（A teamwork）
+                        </div>
+                        <ul class="text-apple-secondary space-y-1 pl-4 list-disc text-[11px]">
+                            <li><strong>在團隊與其成員之間的關係：</strong>讓公司每一團隊成員強烈地感受到自己是團隊的一員，並且由衷地把自己的前途與公司團隊的命運繫在一起，願意為公司團隊的利益與目標盡心盡力。</li>
+                            <li><strong>在團隊成員之間的關係：</strong>公司團隊成員彼此都把對方視作「一家人」，都是團隊的一份子。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: Affiliated Companies & Corporate Structure from emmt.com.tw -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="apple-card p-5 rounded-2xl">
+                        <span class="text-xs font-bold text-neutral-950 block mb-2 font-mono">關係企業 (Affiliated Companies)</span>
+                        <div class="grid grid-cols-2 gap-2 text-xs text-neutral-800">
+                            <div class="p-2.5 rounded-lg bg-apple-surface border border-neutral-200/80 font-medium">
+                                義联集團
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-apple-surface border border-neutral-200/80 font-medium">
+                                燁輝企業
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-apple-surface border border-neutral-200/80 font-medium">
+                                AWID
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-apple-surface border border-neutral-200/80 font-medium">
+                                雲義科技
+                            </div>
+                            <div class="col-span-2 p-2.5 rounded-lg bg-apple-surface border border-neutral-200/80 font-medium">
+                                燁茂企業
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apple-card p-5 rounded-2xl">
+                        <span class="text-xs font-bold text-neutral-950 block mb-2 font-mono">製程能力宣告 (Process Capabilities)</span>
+                        <p class="text-[11px] text-apple-secondary leading-relaxed">
+                            億威電子系統（EMMT）股份有限公司是一家符合美國軍規 <strong>MIL-Q-9858A</strong> 品保標準之專業 ODM 與 OEM 製造廠，提供高可靠度、軍用規格電子，自 PC 板組裝至系統裝備之設計製造與專業委託。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 Official Divisions from emmt.com.tw: 電子代工 / 智慧製造 / 創新應用 / 視覺創意 / TAF可靠度實驗室 -->
+    <section id="services" class="py-20 bg-apple-surface border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">Products & Services</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 mt-1">
+                    億威電子五大產品與服務範疇
+                </h2>
+                <p class="text-apple-secondary text-xs sm:text-sm mt-2">
+                    完全依據官網原訂業務架構：電子代工、智慧製造、創新應用、視覺創意與 TAF 國家級可靠度實驗室。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                
+                <!-- 1. 電子代工 -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Category 01</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">電子代工 (EMS / ODM / OEM)</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            提供全方位 OEM/ODM 專業電子代工製造服務與全面性客製化方案。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• OEM/ODM 專業電子代工服務</div>
+                        <div>• 客製化專案服務</div>
+                        <div>• 無線電通訊模組</div>
+                    </div>
+                </div>
+
+                <!-- 2. 智慧製造 -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Category 02</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">智慧製造 (Smart Manufacturing)</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            由智慧製造專責部門開發，將軟體整合引入流程，提升生產效率與工安監測。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• 生產管理與倉儲管理系統</div>
+                        <div>• 地磅管理系統</div>
+                        <div>• 感測器監測 (空氣、震動、噪音等)</div>
+                        <div>• 工安監測平台與 AI 智慧運輸安全</div>
+                    </div>
+                </div>
+
+                <!-- 3. 創新應用 -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Category 03</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">創新應用 (Innovative Applications)</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            具備跨平台系統與數位應用能力，承接集團及外部企業級專案開發。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• 形象官網開發 (如義大世界、義大客運等)</div>
+                        <div>• 企業級應用系統</div>
+                        <div>• APP 應用開發</div>
+                    </div>
+                </div>
+
+                <!-- 4. 視覺創意 -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Category 04</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">視覺創意 (Visual Creative)</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            設立“視覺特效部門”，提供專業視覺創意與沉浸式互動技術。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• 視覺創意服務項目與特效製作</div>
+                        <div>• 數位解決方案</div>
+                        <div>• 產品介紹與沉浸式 VR 教育訓練</div>
+                    </div>
+                </div>
+
+                <!-- 5. TAF 可靠度實驗室 -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Category 05</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">TAF 可靠度實驗室</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            符合 MIL-STD-810 及 IEC-60068 國際規範，獲 TAF 頒發 ISO/IEC 17025 認可。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• 溫度應力篩選試驗</div>
+                        <div>• 正弦/隨機震動試驗</div>
+                        <div>• 具備國家級認證測試公信力</div>
+                    </div>
+                </div>
+
+                <!-- 6. 主要產品整合 (Sourced from emmt.com.tw) -->
+                <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-apple-blue mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+                        </div>
+                        <span class="text-[10px] font-mono font-semibold uppercase text-apple-blue">Specialized Lines</span>
+                        <h3 class="text-base font-bold text-neutral-950 mt-0.5 mb-2">主要製造與研發產品</h3>
+                        <p class="text-xs text-apple-secondary leading-relaxed mb-3">
+                            億威電子多年在通訊與射頻領域累積之自主與委託生產主力機種。
+                        </p>
+                    </div>
+                    <div class="border-t border-neutral-100 pt-3 text-[11px] text-neutral-700 space-y-1">
+                        <div>• 無線射頻辨識 (RFID) 讀取設備</div>
+                        <div>• 無線電通訊 (RADIO) 設備</div>
+                        <div>• 電子鎖系統 (Electronic locking systems)</div>
+                        <div>• 各種軍規製程之 PCB、Cable 與模組</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Capabilities & Manufacturing Expertise -->
+    <section id="tech" class="py-16 bg-white border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">Technical Capabilities</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 mt-1">
+                    技術能力與製造專長
+                </h2>
+                <p class="text-apple-secondary text-xs sm:text-sm mt-2">
+                    億威電子官網正式登錄之核心技術架構：產品系統整合設計與六大製造專長。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Group A: 產品系統整合設計 -->
+                <div class="p-6 rounded-2xl bg-apple-surface border border-neutral-200">
+                    <div class="flex items-center space-x-2 text-xs font-bold text-neutral-950 mb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+                        <span class="text-sm">產品系統整合設計 (System Integration Design)</span>
+                    </div>
+                    <p class="text-xs text-apple-secondary mb-4 leading-relaxed">
+                        提供從概念、研發試產至量產之一站式整合設計，專注於三大核心領域：
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-neutral-900">
+                        <div class="bg-white p-3.5 rounded-xl border border-neutral-200 text-center font-medium">
+                            硬體設計 (HW)
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-neutral-200 text-center font-medium">
+                            韌體設計 (FW)
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-neutral-200 text-center font-medium">
+                            機構設計 (Mechanical)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group B: 製造專長 -->
+                <div class="p-6 rounded-2xl bg-apple-surface border border-neutral-200">
+                    <div class="flex items-center space-x-2 text-xs font-bold text-neutral-950 mb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+                        <span class="text-sm">製造專長 (Manufacturing Expertise)</span>
+                    </div>
+                    <p class="text-xs text-apple-secondary mb-4 leading-relaxed">
+                        官網登錄之完整六項製造與代工專長項目：
+                    </p>
+                    <div class="grid grid-cols-2 gap-2.5 text-xs text-neutral-800">
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            1. 電子製造服務 (EMS)
+                        </div>
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            2. 系統組裝與整合
+                        </div>
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            3. 表面黏著技術 (SMT)
+                        </div>
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            4. 環境測試能力
+                        </div>
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            5. 線束及電纜組件
+                        </div>
+                        <div class="bg-white p-2.5 rounded-lg border border-neutral-200">
+                            6. PCBA 製造與測試
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAF Reliability Laboratory Section: EXACT DATA from emmt.com.tw/emmt-web/products-services/taf-lab -->
+    <section id="taf-lab" class="py-20 bg-apple-bg border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">TAF Laboratory</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 mt-1">
+                    TAF 可靠度實驗室
+                </h2>
+                <p class="text-apple-secondary text-xs sm:text-sm mt-2 leading-relaxed">
+                    億威擁有符合 <strong>MIL-STD-810</strong> 及 <strong>IEC-60068</strong> 國際可靠度測試規範能力，並通過財團法人全國認證基金會（Taiwan Accreditation Foundation ; TAF）所核可頒發 <strong>ISO/IEC 17025:2017</strong> 實驗室品質管理系統認證證書。
+                </p>
+            </div>
+
+            <!-- TAF Table: Exact Match to emmt.com.tw/emmt-web/products-services/taf-lab -->
+            <div class="apple-card rounded-2xl overflow-hidden border border-neutral-200 shadow-sm max-w-4xl mx-auto">
+                <div class="p-5 bg-neutral-950 text-white flex flex-col sm:flex-row sm:items-center justify-between">
+                    <div>
+                        <div class="text-xs text-neutral-400 font-mono">官方實驗室環境測試能力</div>
+                        <div class="text-base font-bold text-white mt-0.5">環測能力設備與規格標準</div>
+                    </div>
+                    <div class="mt-2 sm:mt-0 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 text-[11px] font-mono border border-white/10 text-emerald-400">
+                        <span>● ISO/IEC 17025:2017 認可</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-apple-surface border-b border-neutral-200 text-neutral-800">
+                                <th class="py-3 px-5 font-semibold font-mono w-20 text-center">項次</th>
+                                <th class="py-3 px-6 font-semibold w-48">設備名稱</th>
+                                <th class="py-3 px-6 font-semibold">規格與參數</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-100 text-neutral-700">
+                            <tr class="hover:bg-neutral-50 transition-colors">
+                                <td class="py-4 px-5 text-center font-mono font-bold text-apple-blue">1</td>
+                                <td class="py-4 px-6 font-bold text-neutral-950">溫度應力篩選</td>
+                                <td class="py-4 px-6 space-y-1">
+                                    <div class="font-mono"><strong class="font-medium text-neutral-900">溫度範圍：</strong>-45°C ~ +105°C</div>
+                                    <div class="font-mono"><strong class="font-medium text-neutral-900">溫升 / 溫降：</strong>≧ 15°C / 分鐘</div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50 transition-colors">
+                                <td class="py-4 px-5 text-center font-mono font-bold text-apple-blue">2</td>
+                                <td class="py-4 px-6 font-bold text-neutral-950">震動試驗</td>
+                                <td class="py-4 px-6 space-y-1">
+                                    <div class="font-mono"><strong class="font-medium text-neutral-900">振動方式：</strong>Sinusoid / Random</div>
+                                    <div class="font-mono"><strong class="font-medium text-neutral-900">頻率範圍：</strong>5Hz ~ 2000Hz</div>
+                                    <div class="font-mono"><strong class="font-medium text-neutral-900">加速度：</strong>6G (10KG Load, 20Hz ~ 2KHz Random)</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="p-4 bg-apple-surface border-t border-neutral-200 text-[11px] text-apple-secondary flex flex-col sm:flex-row sm:items-center justify-between">
+                    <div>遵循規範：MIL-STD-810 及 IEC-60068 國際可靠度環境試驗規範</div>
+                    <div class="mt-1 sm:mt-0 font-mono text-neutral-800">可提供具公信力之正規第三方環測報告</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Certifications Section: Exact 9 Certificates from emmt.com.tw -->
+    <section id="certifications" class="py-20 bg-white border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">Management System Certifications</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 mt-1">
+                    管理系統驗證證書
+                </h2>
+                <p class="text-apple-secondary text-xs sm:text-sm mt-2">
+                    億威電子官方公布通過之國際管理系統驗證證書清單：
+                </p>
+            </div>
+
+            <!-- 9 Certifications Grid (from emmt.com.tw nav menu) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 01</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">ISO 9001:2015</h4>
+                    <p class="text-xs text-apple-secondary mt-1">品質管理系統證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 02</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">IATF 16949:2016</h4>
+                    <p class="text-xs text-apple-secondary mt-1">汽車品質管理系統證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 03</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">ISO 14001:2015</h4>
+                    <p class="text-xs text-apple-secondary mt-1">環境管理系統證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 04</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">ISO 45001:2018</h4>
+                    <p class="text-xs text-apple-secondary mt-1">職業安全衛生管理系統證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 05</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">ISO 27001</h4>
+                    <p class="text-xs text-apple-secondary mt-1">資訊安全管理系統證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 06</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">ANSI ESD S20.20-2021</h4>
+                    <p class="text-xs text-apple-secondary mt-1">靜電放電防護證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 07</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">IEC 61340-5-1:2016</h4>
+                    <p class="text-xs text-apple-secondary mt-1">電子器件靜電防護標準證書</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 08</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">IPC QML 證書</h4>
+                    <p class="text-xs text-apple-secondary mt-1">電子行業認證合格製造商名錄 (QML)</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-apple-surface border border-neutral-200">
+                    <span class="text-[10px] font-mono text-apple-blue font-bold">CERTIFICATE 09</span>
+                    <h4 class="text-sm font-bold text-neutral-950 mt-0.5">TAF 測試實驗室證書</h4>
+                    <p class="text-xs text-apple-secondary mt-1">ISO/IEC 17025:2017 實驗室品質認可</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & RFQ Form Section -->
+    <section id="contact" class="py-20 bg-apple-surface border-t border-neutral-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left 5 Cols: Exact Factory Coordinates from emmt.com.tw -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div>
+                        <span class="text-apple-blue text-xs font-semibold tracking-wide uppercase font-mono">Contact Coordinates</span>
+                        <h2 class="text-2xl font-bold tracking-tight text-neutral-950 mt-1">聯絡億威電子</h2>
+                        <p class="text-apple-secondary text-xs mt-2 leading-relaxed">
+                            歡迎國內外企業及合作夥伴洽詢電子代工、客製化專案、智慧製造系統整合或 TAF 可靠度實驗室委託。
+                        </p>
+                    </div>
+
+                    <!-- Factory 1: Taichung Headquarter -->
+                    <div class="apple-card p-5 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-neutral-950">億威電子系統股份有限公司 (台中)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] bg-neutral-100 font-mono text-neutral-700">總公司</span>
+                        </div>
+                        <div class="text-xs text-neutral-700 space-y-1.5 font-mono pt-1">
+                            <div class="flex items-start">
+                                <span class="text-apple-tertiary mr-2 shrink-0">地址：</span>
+                                <span>427058 臺中市潭子區南二路16之1號</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">信箱：</span>
+                                <a href="mailto:sales@emmt.com.tw" class="text-apple-blue hover:underline">sales@emmt.com.tw</a>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">電話：</span>
+                                <span>(04) 2532-2163</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">傳真：</span>
+                                <span>(04) 2533-9429</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">時間：</span>
+                                <span>週一至週五 08:00 - 17:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Factory 2: Kaohsiung Plant -->
+                    <div class="apple-card p-5 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-neutral-950">億威電子系統股份有限公司 (高雄)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] bg-neutral-100 font-mono text-neutral-700">高雄廠</span>
+                        </div>
+                        <div class="text-xs text-neutral-700 space-y-1.5 font-mono pt-1">
+                            <div class="flex items-start">
+                                <span class="text-apple-tertiary mr-2 shrink-0">地址：</span>
+                                <span>高雄市三民區大昌一路335號5F</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">信箱：</span>
+                                <a href="mailto:sales@emmt.com.tw" class="text-apple-blue hover:underline">sales@emmt.com.tw</a>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">電話：</span>
+                                <span>(07) 615-4889</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-apple-tertiary mr-2 shrink-0">時間：</span>
+                                <span>週一至週五 08:00 - 17:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 7 Cols: Clean Inquiry Form -->
+                <div class="lg:col-span-7">
+                    <form id="inquiryForm" onsubmit="handleInquiry(event)" class="bg-white rounded-2xl p-6 sm:p-8 border border-neutral-200 shadow-sm space-y-4">
+                        <div class="border-b border-neutral-100 pb-3">
+                            <h3 class="text-base font-bold text-neutral-950">線上需求洽詢與技術留言</h3>
+                            <p class="text-xs text-apple-secondary mt-0.5">依據官網服務範疇進行專案委託與試產詢價</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-800 mb-1" for="contactName">姓名 / 職稱 *</label>
+                                <input type="text" id="contactName" required placeholder="例如：王經理" 
+                                       class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-800 mb-1" for="orgName">公司 / 單位名稱 *</label>
+                                <input type="text" id="orgName" required placeholder="例如：台灣精電系統股份有限公司" 
+                                       class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-800 mb-1" for="contactEmail">電子郵件 *</label>
+                                <input type="email" id="contactEmail" required placeholder="contact@company.com" 
+                                       class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-800 mb-1" for="contactTel">聯絡電話 *</label>
+                                <input type="tel" id="contactTel" required placeholder="(04) XXXX-XXXX 或手機" 
+                                       class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-neutral-800 mb-1" for="inquiryService">服務項目類別 *</label>
+                            <select id="inquiryService" class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition">
+                                <option value="電子代工 (OEM/ODM 專業代工 / 客製化 / 無線電通訊模組)">電子代工 (OEM/ODM 專業代工 / 客製化 / 無線電通訊模組)</option>
+                                <option value="智慧製造 (生產管理 / 倉儲管理 / 地磅管理 / 工安監測)">智慧製造 (生產管理 / 倉儲管理 / 地磅管理 / 工安監測)</option>
+                                <option value="創新應用 (形象官網 / 企業級系統 / APP 開發)">創新應用 (形象官網 / 企業級系統 / APP 開發)</option>
+                                <option value="視覺創意 (視覺特效 / 數位展示 / VR 沉浸式培訓)">視覺創意 (視覺特效 / 數位展示 / VR 沉浸式培訓)</option>
+                                <option value="TAF 可靠度實驗室 (溫度應力篩選 / 震動試驗 / MIL-STD-810)">TAF 可靠度實驗室 (溫度應力篩選 / 震動試驗 / MIL-STD-810)</option>
+                                <option value="軍規製程 PCB、Cable 線束與模組組裝">軍規製程 PCB、Cable 線束與模組組裝</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-neutral-800 mb-1" for="inquiryMessage">需求內容說明</label>
+                            <textarea id="inquiryMessage" rows="3" placeholder="請描述您的專案需求、打樣批量、線路板層數、交期規劃或可靠度環測條件..." 
+                                      class="w-full px-3 py-2 rounded-lg bg-apple-surface border border-neutral-200 text-neutral-900 text-xs focus:bg-white focus:border-neutral-950 focus:outline-none transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="apple-pill-btn w-full py-2.5 rounded-full bg-neutral-950 text-white font-medium text-xs shadow-sm hover:bg-neutral-800 transition flex items-center justify-center space-x-1.5">
+                            <span>送出聯絡洽詢</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Safe Toast Box (No alerts) -->
+    <div id="toastBox" class="fixed bottom-6 right-6 z-50 transform translate-y-32 transition-transform duration-300 ease-out hidden">
+        <div class="bg-neutral-950 text-white border border-neutral-800 rounded-2xl p-4 shadow-2xl flex items-center space-x-3 max-w-md">
+            <div class="p-2 bg-emerald-500/20 rounded-full text-emerald-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold text-white">訊息已記錄送出</h5>
+                <p id="toastDetail" class="text-[11px] text-neutral-400 mt-0.5 leading-snug">
+                    億威電子專案團隊已接獲您的需求，將盡速與您聯繫。
+                </p>
+            </div>
+            <button onclick="dismissToast()" class="text-neutral-400 hover:text-white p-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Official Footer based strictly on emmt.com.tw -->
+    <footer class="bg-apple-surface border-t border-neutral-200 text-apple-secondary text-[11px] py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Col 1 -->
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-1.5">
+                        <span class="text-sm font-bold text-neutral-950">億威電子系統股份有限公司</span>
+                    </div>
+                    <p class="text-apple-secondary leading-relaxed">
+                        本公司曾經是美國 TITAN SESCO 公司之海外分公司，1988 年改組。符合美國軍規 MIL-Q-9858A 品保標準之專業 ODM 與 OEM 製造廠。
+                    </p>
+                    <div class="text-[10px] text-neutral-500 font-mono">
+                        TAF 認可實驗室 · ISO/IEC 17025:2017
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h5 class="text-xs font-semibold text-neutral-950 mb-2.5">產品與服務</h5>
+                    <ul class="space-y-1.5">
+                        <li><a href="#services" class="hover:text-neutral-950 transition">電子代工 (OEM/ODM/客製化)</a></li>
+                        <li><a href="#services" class="hover:text-neutral-950 transition">智慧製造 (生產/倉儲/地磅/工安)</a></li>
+                        <li><a href="#services" class="hover:text-neutral-950 transition">創新應用 (官網/企業系統/APP)</a></li>
+                        <li><a href="#services" class="hover:text-neutral-950 transition">視覺創意 (視覺特效部門)</a></li>
+                        <li><a href="#taf-lab" class="hover:text-neutral-950 transition">TAF 可靠度實驗室</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h5 class="text-xs font-semibold text-neutral-950 mb-2.5">關係企業</h5>
+                    <ul class="space-y-1.5">
+                        <li>義联集團</li>
+                        <li>燁輝企業</li>
+                        <li>AWID</li>
+                        <li>雲義科技</li>
+                        <li>燁茂企業</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h5 class="text-xs font-semibold text-neutral-950 mb-2.5">廠區聯絡資訊</h5>
+                    <div class="space-y-2 font-mono">
+                        <div>
+                            <span class="font-bold text-neutral-900 block">台中總公司</span>
+                            <div>臺中市潭子區南二路16之1號</div>
+                            <div>TEL: (04) 2532-2163</div>
+                            <div>FAX: (04) 2533-9429</div>
+                        </div>
+                        <div class="border-t border-neutral-200 pt-1.5">
+                            <span class="font-bold text-neutral-900 block">高雄廠</span>
+                            <div>高雄市三民區大昌一路335號5F</div>
+                            <div>TEL: (07) 615-4889</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-neutral-200/80 pt-5 flex flex-col sm:flex-row justify-between items-center text-apple-tertiary">
+                <div>
+                    &copy; Copyright EMMT SYSTEMS CORPORATION. All Rights Reserved (來源：www.emmt.com.tw)
+                </div>
+                <div class="mt-2 sm:mt-0 flex space-x-4">
+                    <span>反貪腐及反賄賂政策</span>
+                    <span>無衝突礦產宣告書</span>
+                    <span>現代奴隸制法案聲明</span>
+                    <span>資通安全政策</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Form Submission with Safe Toast Box (No alerts)
+        function handleInquiry(e) {
+            e.preventDefault();
+            
+            const contactName = document.getElementById('contactName').value.trim();
+            const orgName = document.getElementById('orgName').value.trim();
+            const service = document.getElementById('inquiryService').value;
+
+            const toast = document.getElementById('toastBox');
+            const toastDetail = document.getElementById('toastDetail');
+
+            toastDetail.textContent = `感謝 ${orgName} 的 ${contactName}！您諮詢的項目（${service}）已送達億威電子營業處 (sales@emmt.com.tw)，將由專責團隊與您聯繫。`;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-32');
+            }, 10);
+
+            document.getElementById('inquiryForm').reset();
+
+            setTimeout(() => {
+                dismissToast();
+            }, 6000);
+        }
+
+        function dismissToast() {
+            const toast = document.getElementById('toastBox');
+            if (toast) {
+                toast.classList.add('translate-y-32');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
